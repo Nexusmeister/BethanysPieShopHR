@@ -94,7 +94,7 @@ namespace BethanysPieShopHRM.Server.Services
                     Smoker = false,
                     Street = "Grote Markt 1",
                     Zip = "1000",
-                    JobCategoryId = 1, 
+                    JobCategoryId = 1,
                     Comment = "Lorem Ipsum",
                     ExitDate = null,
                     JoinedDate = new DateTime(2015, 3, 1)
@@ -118,9 +118,10 @@ namespace BethanysPieShopHRM.Server.Services
             return await Task.Run(() => JobCategories);
         }
 
-        public async Task<Employee> GetEmployeeDetails(int employeeId)
+        public Task<Employee> GetEmployeeDetails(int employeeId)
         {
-            return await Task.Run(() => { return Employees.FirstOrDefault(e => e.EmployeeId == employeeId); });
+            var t = Task.FromResult(Employees.FirstOrDefault(e => e.EmployeeId == employeeId) ?? new Employee());
+            return t;
         }
 
         public Task<Employee> AddEmployee(Employee employee)

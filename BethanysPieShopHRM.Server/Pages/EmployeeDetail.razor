@@ -1,9 +1,9 @@
 ﻿
-@page "/employeedetail/{EmployeeId}"
+@page "/employeedetail/{EmployeeId:int}"
 @inherits EmployeeDetailBase
 
 <section class="employee-detail">
-    <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
+    <h1 class="page-title">Details for @Employee?.FirstName @Employee?.LastName</h1>
 
     @{
         var leadingFormat = "00000";
@@ -90,7 +90,10 @@
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">Smoker</label>
                     <div class="col-sm-8">
-
+                        
+                        
+                        <label type="text" readonly class="form-control-plaintext">@(Employee.Smoker ? "Yes" : "No")</label>
+                        @* 
                         @if (Employee.Smoker)
                         {
                             <label type="text" readonly class="form-control-plaintext">Yes</label>
@@ -99,7 +102,7 @@
                         {
                             <label type="text" readonly class="form-control-plaintext">No</label>
 
-                        }
+                        } *@
                     </div>
                 </div>
 
