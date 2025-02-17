@@ -15,6 +15,7 @@ namespace BethanysPieShopHRM.Server.Pages
         public IEmployeeDataService EmployeeDataService { get; set; }
 
         public List<Employee> Employees { get; set; }
+        
 
         protected AddEmployeeDialog AddEmployeeDialog { get; set; }
 
@@ -33,5 +34,7 @@ namespace BethanysPieShopHRM.Server.Pages
         {
             AddEmployeeDialog.Show();
         }
+
+        
     }
 }

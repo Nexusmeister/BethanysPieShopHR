@@ -9,14 +9,9 @@ using BethanysPieShopHRM.Server.Services;
 
 namespace BethanysPieShopHRM.Server
 {
-    public class Startup
+    public class Startup(IConfiguration configuration)
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; } = configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -34,10 +29,10 @@ namespace BethanysPieShopHRM.Server
             //});
 
             //services.AddScoped<IEmployeeDataService, MockEmployeeDataService>();
-            services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
-            {
-                client.BaseAddress = new Uri("https://localhost:44340/");
-            });
+            //services.AddHttpClient<IEmployeeDataService, MockEmployeeDataService>(client =>
+            //{
+            //    client.BaseAddress = new Uri("https://localhost:44340/");
+            //});
             services.AddHttpClient<ICountryDataService, CountryDataService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
@@ -46,6 +41,8 @@ namespace BethanysPieShopHRM.Server
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
             });
+
+            services.AddScoped<IEmployeeDataService, MockEmployeeDataService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

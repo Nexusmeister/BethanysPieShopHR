@@ -1,0 +1,18 @@
+﻿<h3>@Name</h3>
+
+<div class="col">
+    <div class="card rounded-3 employee-card">
+        <div class="card-header py-3">
+            <h4>@Employee?.FirstName @Employee?.LastName (@Employee?.City)</h4>
+        </div>
+        <div class="card-body employee-card text-center">
+            <div class="mb-3">
+                @if (@Employee is not null)
+                {
+                    <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="img-responsive rounded-circle employee-detail-img" />
+                }
+            </div>
+            <button class="btn btn-primary btn-sm mb-1" @onclick="async () => await EmployeeQuickViewClicked.InvokeAsync(Employee)">Quick View</button>
+        </div>
+    </div>
+</div>
