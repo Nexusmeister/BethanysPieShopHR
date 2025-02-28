@@ -10,10 +10,10 @@ namespace BethanysPieShopHRM.Server.Pages;
 public class EmployeeDetailBase : ComponentBase
 {
     [Inject]
-    public IEmployeeDataService EmployeeDataService { get; set; }
+    public IEmployeeDataService? EmployeeDataService { get; set; }
 
     [Inject]
-    public IJobCategoryDataService JobCategoryDataService{ get; set; }
+    public IJobCategoryDataService? JobCategoryDataService{ get; set; }
 
     [Parameter]
     public int EmployeeId { get; set; }

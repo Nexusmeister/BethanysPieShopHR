@@ -8,11 +8,11 @@ namespace BethanysPieShopHRM.Server.Services
 {
     public class MockEmployeeDataService : IEmployeeDataService
     {
-        private List<Employee> _employees;
+        private List<Employee?> _employees;
         private List<Country> _countries;
         private List<JobCategory> _jobCategories;
 
-        private IEnumerable<Employee> Employees
+        private IEnumerable<Employee?> Employees
         {
             get
             {
@@ -79,11 +79,10 @@ namespace BethanysPieShopHRM.Server.Services
         {
             if (_employees == null)
             {
-                Employee e1 = new Employee
+                var e1 = new Employee
                 {
-                    CountryId = 1,
                     MaritalStatus = MaritalStatus.Single,
-                    BirthDate = new DateTime(1979, 1, 16),
+                    BirthDate = new DateTime(1989, 3, 11),
                     City = "Brussels",
                     Email = "bethany@bethanyspieshop.com",
                     EmployeeId = 1,
@@ -94,16 +93,65 @@ namespace BethanysPieShopHRM.Server.Services
                     Smoker = false,
                     Street = "Grote Markt 1",
                     Zip = "1000",
-                    JobCategoryId = 1,
+                    JobCategory = JobCategories[2],
+                    JobCategoryId = JobCategories[2].JobCategoryId,
                     Comment = "Lorem Ipsum",
                     ExitDate = null,
-                    JoinedDate = new DateTime(2015, 3, 1)
+                    JoinedDate = new DateTime(2015, 3, 1),
+                    Country = Countries[0],
+                    CountryId = Countries[0].CountryId
                 };
-                _employees = new List<Employee>() { e1 };
+
+                var e2 = new Employee
+                {
+                    MaritalStatus = MaritalStatus.Married,
+                    BirthDate = new DateTime(1979, 1, 16),
+                    City = "Antwerp",
+                    Email = "gill@bethanyspieshop.com",
+                    EmployeeId = 2,
+                    FirstName = "Gill",
+                    LastName = "Cleeren",
+                    Gender = Gender.Female,
+                    PhoneNumber = "33999909923",
+                    Smoker = false,
+                    Street = "New Street",
+                    Zip = "2000",
+                    JobCategory = JobCategories[1],
+                    JobCategoryId = JobCategories[1].JobCategoryId,
+                    Comment = "Lorem Ipsum",
+                    ExitDate = null,
+                    JoinedDate = new DateTime(2017, 12, 24),
+                    Country = Countries[1],
+                    CountryId = Countries[1].CountryId
+                };
+
+                var e3 = new Employee
+                {
+                    MaritalStatus = MaritalStatus.Married,
+                    BirthDate = new DateTime(1979, 1, 16),
+                    City = "Antwerp",
+                    Email = "gill@bethanyspieshop.com",
+                    EmployeeId = 2,
+                    FirstName = "Jane",
+                    LastName = string.Empty,
+                    Gender = Gender.Female,
+                    PhoneNumber = "33999909923",
+                    Smoker = false,
+                    Street = "New Street",
+                    Zip = "2000",
+                    JobCategory = JobCategories[1],
+                    JobCategoryId = JobCategories[1].JobCategoryId,
+                    Comment = "Lorem Ipsum",
+                    ExitDate = null,
+                    JoinedDate = new DateTime(2017, 12, 24),
+                    Country = Countries[1],
+                    CountryId = Countries[1].CountryId
+                };
+                _employees = [e1, e2, e3];
             }
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<IEnumerable<Employee?>> GetAllEmployees()
         {
             return await Task.Run(() => Employees);
         }
@@ -118,13 +166,13 @@ namespace BethanysPieShopHRM.Server.Services
             return await Task.Run(() => JobCategories);
         }
 
-        public Task<Employee> GetEmployeeDetails(int employeeId)
+        public Task<Employee?> GetEmployeeDetails(int employeeId)
         {
-            var t = Task.FromResult(Employees.FirstOrDefault(e => e.EmployeeId == employeeId) ?? new Employee());
+            Task<Employee?> t = Task.FromResult(Employees.FirstOrDefault(e => e.EmployeeId == employeeId) ?? new Employee());
             return t;
         }
 
-        public Task<Employee> AddEmployee(Employee employee)
+        public Task<Employee> AddEmployee(Employee? employee)
         {
             throw new NotImplementedException();
         }
@@ -134,7 +182,7 @@ namespace BethanysPieShopHRM.Server.Services
             throw new NotImplementedException();
         }
 
-        public Task UpdateEmployee(Employee employee)
+        public Task UpdateEmployee(Employee? employee)
         {
             throw new NotImplementedException();
         }

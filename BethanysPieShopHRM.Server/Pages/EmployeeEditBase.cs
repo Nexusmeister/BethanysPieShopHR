@@ -28,7 +28,7 @@ namespace BethanysPieShopHRM.Server.Pages
 
         public InputText LastNameInputText { get; set; }
 
-        public Employee Employee { get; set; } = new Employee();
+        public Employee? Employee { get; set; } = new Employee();
 
         //needed to bind to select to value
         protected string CountryId = string.Empty;

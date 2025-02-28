@@ -12,16 +12,16 @@ namespace BethanysPieShopHRM.Server.Pages
     public class EmployeeOverviewBase: ComponentBase
     {
         [Inject]
-        public IEmployeeDataService EmployeeDataService { get; set; }
+        public IEmployeeDataService? EmployeeDataService { get; set; }
 
-        public List<Employee> Employees { get; set; }
-        
+        public List<Employee?> Employees { get; set; }
+        protected const string Title = "Employee Overview";
 
         protected AddEmployeeDialog AddEmployeeDialog { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
+            Employees = (await EmployeeDataService?.GetAllEmployees()).ToList();
         }
 
         public async void AddEmployeeDialog_OnDialogClose()

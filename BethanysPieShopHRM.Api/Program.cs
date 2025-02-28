@@ -1,30 +1,60 @@
 using BethanysPieShopHRM.Api.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
-namespace BethanysPieShopHRM.Api
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddDbContext<AppDbContext>(options => {
+    options.UseSqlServer(
+        builder.Configuration["ConnectionStrings:DefaultConnection"]);
+});
+
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
+builder.Services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddCors(options =>
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var host = CreateHostBuilder(args).Build();
+    options.AddPolicy("Open", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
 
-            using (var scope = host.Services.CreateScope())
-            {
-                using var context = scope.ServiceProvider.GetService<AppDbContext>();
-                context.Database.EnsureCreated();
-            }
+builder.Services.AddControllers();
 
-            host.Run();
-        }
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+var app = builder.Build();
+
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
 }
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.UseCors("Open");
+
+app.MapControllers();
+
+app.MapFallbackToFile("index.html");
+
+app.Run();

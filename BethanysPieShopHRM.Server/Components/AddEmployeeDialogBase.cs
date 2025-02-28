@@ -10,7 +10,7 @@ namespace BethanysPieShopHRM.Server.Components
     {
         public bool ShowDialog { get; set; }
 
-        public Employee Employee { get; set; } = new Employee { CountryId = 1, JobCategoryId = 1, BirthDate = DateTime.Now, JoinedDate = DateTime.Now };
+        public Employee? Employee { get; set; } = new Employee { CountryId = 1, JobCategoryId = 1, BirthDate = DateTime.Now, JoinedDate = DateTime.Now };
 
         [Parameter]
         public EventCallback<bool> CloseEventCallback { get; set; }

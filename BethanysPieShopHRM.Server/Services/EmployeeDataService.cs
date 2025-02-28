@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -16,19 +17,19 @@ namespace BethanysPieShopHRM.Server.Services
             _httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<IEnumerable<Employee?>> GetAllEmployees()
         {
             return await JsonSerializer.DeserializeAsync<IEnumerable<Employee>>
-                (await _httpClient.GetStreamAsync($"api/employee"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+                (await _httpClient.GetStreamAsync($"api/employee"), new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? Array.Empty<Employee>();
         }
 
-        public async Task<Employee> GetEmployeeDetails(int employeeId)
+        public async Task<Employee?> GetEmployeeDetails(int employeeId)
         {
             return await JsonSerializer.DeserializeAsync<Employee>
                 (await _httpClient.GetStreamAsync($"api/employee/{employeeId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
-        public async Task<Employee> AddEmployee(Employee employee)
+        public async Task<Employee> AddEmployee(Employee? employee)
         {
             var employeeJson =
                 new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
@@ -43,7 +44,7 @@ namespace BethanysPieShopHRM.Server.Services
             return null;
         }
 
-        public async Task UpdateEmployee(Employee employee)
+        public async Task UpdateEmployee(Employee? employee)
         {
             var employeeJson =
                 new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");

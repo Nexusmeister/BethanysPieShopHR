@@ -19,7 +19,7 @@ namespace BethanysPieShopHRM.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
-            
+
             //services.AddScoped<HttpClient>(s =>
             //{
             //    var client = new HttpClient { BaseAddress = new System.Uri("https://localhost:44340/") };
@@ -29,10 +29,11 @@ namespace BethanysPieShopHRM.Server
             //});
 
             //services.AddScoped<IEmployeeDataService, MockEmployeeDataService>();
-            //services.AddHttpClient<IEmployeeDataService, MockEmployeeDataService>(client =>
+            //services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
             //{
-            //    client.BaseAddress = new Uri("https://localhost:44340/");
+            //    client.BaseAddress = new Uri();
             //});
+
             services.AddHttpClient<ICountryDataService, CountryDataService>(client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
