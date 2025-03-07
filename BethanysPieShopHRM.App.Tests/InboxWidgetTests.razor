@@ -8,14 +8,15 @@
 
     public InboxWidgetTests()
     {
-        this.Services.AddScoped<ApplicationState>();
+        Services.AddScoped<ApplicationState>();
     }
 
     [Fact]
     public void RenderInboxWidgetWithValueGreaterThanZero()
     {
 
-        var applicationState = this.Services.GetService<ApplicationState>();
+        var applicationState = Services.GetService<ApplicationState>();
+        Assert.NotNull(applicationState);
         applicationState.NumberOfMessages = 5;
 
         var cut = Render(@<InboxWidget />);
