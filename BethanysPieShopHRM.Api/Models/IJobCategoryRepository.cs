@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.Domain;
 
 namespace BethanysPieShopHRM.Api.Models
 {

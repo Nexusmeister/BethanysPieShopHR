@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BethanysPieShopHRM.Server.Components;
 using BethanysPieShopHRM.Server.Services;
 using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace BethanysPieShopHRM.Server.Pages

@@ -1,5 +1,6 @@
 ﻿using BethanysPieShopHRM.Api.Models;
 using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BethanysPieShopHRM.Api.Controllers

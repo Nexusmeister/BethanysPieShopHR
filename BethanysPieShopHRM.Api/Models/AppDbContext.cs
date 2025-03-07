@@ -1,5 +1,6 @@
 ﻿using System;
 using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace BethanysPieShopHRM.Api.Models

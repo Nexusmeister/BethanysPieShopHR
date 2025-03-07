@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace BethanysPieShopHRM.Shared
+namespace BethanysPieShopHRM.Shared.Domain
 {
     public class Employee
     {

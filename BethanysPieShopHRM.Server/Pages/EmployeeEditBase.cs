@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BethanysPieShopHRM.Server.Services;
 using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.Domain;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
