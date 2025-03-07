@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BethanysPieShopHRM.Shared;
-using BethanysPieShopHRM.Shared.Domain;
+﻿using BethanysPieShopHRM.Shared.Domain;
 
 namespace BethanysPieShopHRM.Api.Models
 {
     public class EmployeeRepository : IEmployeeRepository
     {
         private readonly AppDbContext _appDbContext;
+        private Random random = new Random();
 
         public EmployeeRepository(AppDbContext appDbContext)
         {
@@ -53,6 +51,8 @@ namespace BethanysPieShopHRM.Api.Models
                 foundEmployee.Comment = employee.Comment;
                 foundEmployee.ExitDate = employee.ExitDate;
                 foundEmployee.JoinedDate = employee.JoinedDate;
+                //foundEmployee.ImageContent = employee.ImageContent;
+                //foundEmployee.ImageName = employee.ImageName;
 
                 _appDbContext.SaveChanges();
 

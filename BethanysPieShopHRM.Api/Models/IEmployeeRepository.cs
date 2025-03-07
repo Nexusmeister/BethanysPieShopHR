@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BethanysPieShopHRM.Shared;
-using BethanysPieShopHRM.Shared.Domain;
+﻿using BethanysPieShopHRM.Shared.Domain;
 
 namespace BethanysPieShopHRM.Api.Models
 {
@@ -14,5 +9,7 @@ namespace BethanysPieShopHRM.Api.Models
         Employee AddEmployee(Employee employee);
         Employee UpdateEmployee(Employee employee);
         void DeleteEmployee(int employeeId);
+        //IEnumerable<EmployeeListModel> GetLongEmployeeList();
+        //IEnumerable<EmployeeListModel> GetTakeLongEmployeeList(int request, int count);
     }
 }
